@@ -1,0 +1,60 @@
+{% extends 'my_app/contul_meu_pacient.html' %}
+{% load static %}
+
+{% block head_block %}
+<style>
+    .my_button{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        color: #fff;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #92B4EC;
+        border: 1px solid #92B4EC;
+        border-radius: 12px;
+        transition: 0.4 ease-in-out;
+    }
+    .my_button:hover{
+        background-color: #6a96de;
+    }
+    .form-group{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+    }
+    .profile_pic{
+        width: 90%;
+        height: 50%;
+        border-radius: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <div class="new_banner">
+        <img src="{% static 'images/profile_pic.png' %}" style="height: 7vh;width: 8%;display: inline;border-radius: 100%;">
+        <p class="param5">{{ user.username }}</p>
+        <h2 class="header1">Actualizeaza-ti contul:</h2>
+        <hr>
+        <br>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <img src="{% static 'images/profile_pic.png' %}" class="profile_pic">
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-6">
+                <form class="form-group" method="POST" action="">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input type="submit" value="Actualizeaza" class="my_button">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById('user1').value = name;
+</script>
+{% endblock %}

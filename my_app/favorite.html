@@ -1,0 +1,31 @@
+{% extends 'my_app/contul_meu_pacient.html' %}
+{% load static %}
+
+{% block head_block %}
+
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <div class="new_banner">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <img src="{% static 'images/profile_pic.png' %}" style="height: 7vh;width: 28%;display: inline;border-radius: 100%;">
+                <p class="param5">{{ user.username }}</p>
+            </div>
+            <div class="col-lg-9 col-md-4 col-sm-6">
+                <form class="form-group" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="search-box">
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                        <input type="text" class="input-search" placeholder="Cauta acum...">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h2 class="header1">Favorite: {{anunt_favorit.count}}</h2>
+        <hr>
+        <br>
+    </div>
+</div>
+{% endblock %}

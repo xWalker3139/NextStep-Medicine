@@ -1,0 +1,107 @@
+{% extends 'my_app/acasa.html' %}
+
+{% block head_block %}
+<style>
+    .block:before{
+        content: '';
+        width: 100%;
+        height: 760px;
+        transform: skewY(-12deg);
+        transform-origin: 0;
+        position: absolute;
+        top: 0;
+        z-index: -6;
+        margin-bottom: 0;
+        background-image: linear-gradient(150deg, #92B4EC 15%, #92B4EC 70%, #92B4EC 94%);
+    }
+    .my_button{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        color: #fff;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #92B4EC;
+        border: 1px solid #92B4EC;
+        border-radius: 12px;
+        transition: 0.4 ease-in-out;
+    }
+    .my_button:hover{
+        background-color: #6a96de;
+    }
+    .banner2{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        margin-top: 10rem;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="block">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-4 col-sm-6">
+                <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;color: #fff;margin-top: 12rem;font-size: 62px;">Adauga <br> un pacient</p>
+            </div>
+            <div class="col-lg-6 col-md-4 col-sm-6">
+                <img src="https://www.swaytheme.com/static/wp-content/uploads/sites/3/2020/08/seo-agency1.png" style="width: 90%;height: 70%;margin-top: 8rem;" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="banner2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-4 col-sm-6">
+                {% for message in messages %}
+                <div class="alert alert-success">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+                <form class="form-group" method="POST" action="">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input type="submit" value="Adauga" class="my_button">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+    <div class="jumbotron" id="jumbotron3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <p class="param4">Contacteaza-ne</p>
+                    <br>
+                    <p class="param5"><i class="fab fa-facebook"></i> Facebook</p>
+                    <p class="param5"><i class="fab fa-instagram"></i> Instagram</p>
+                    <p class="param5"><i class="fas fa-envelope"></i> Email: </p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <p class="param4">Informatii</p>
+                    <br>
+                    <a href=""><p class="param5">Ajutor si contact</p></a>
+                    <a href=""><p class="param5">Politica de confidentialitate</p></a>
+                    <a href=""><p class="param5">Termeni si conditii</p></a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <p class="param4">Despre noi</p>
+                    <br>
+                    <p class="param5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima distinctio nisi porro accusantium magni harum veniam, quasi veritatis cumque nesciunt quod delectus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron" id="jumbotron4">
+        <div class="container">
+            <p class="param5">© Copyright {{ date_posted }} - NextStep Medicine - Toate drepturile rezervate</p>
+        </div>
+    </div>
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById('user1').value = name;
+    </script>
+{% endblock %}

@@ -1,0 +1,273 @@
+{% extends 'my_app/acasa.html' %}
+{% load static %}
+
+{% block head_block %}
+<style>
+    .banner2{
+        margin-top: 3rem;
+    }
+    .header2{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    #image4{
+        width: 100%;
+        height: 50vh;
+    }
+    .banner3{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        font-size: 24px;
+    }
+    #anchor3{
+        text-decoration: none;
+        color: #000;
+        transition: 0.4s ease-in-out;
+    }
+    #anchor3:hover{
+        text-decoration: underline;
+        color: #6a96de;
+    }
+    #jumbotron5{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      font-size: 17px;
+      background-color: #fff;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="banner2">
+    <div class="container">
+        {% for i in new_model %}
+        <h2 class="header2">{{ i.numele_cabinetului }}</h2>
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+              <li data-target="#demo" data-slide-to="3"></li>
+              <li data-target="#demo" data-slide-to="4"></li>
+              <li data-target="#demo" data-slide-to="5"></li>
+            </ul>
+          
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{ i.imagine.url }}" id="image4">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ i.imagine2.url }}" id="image4">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ i.imagine3.url }}" id="image4">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ i.imagine4.url }}" id="image4">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ i.imagine5.url }}" id="image4">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ i.imagine6.url }}" id="image4">
+              </div>
+            </div>
+          
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+        <br>
+        <div class="banner3">
+            <a href="#servicii" id="anchor3">Servicii</a>
+            <a href="#descriere" id="anchor3">Descriere</a>
+            <a href="#rating" id="anchor3">Rating</a>
+        </div>
+        <br>
+        <section id="servicii">
+          {% for j in cabinet %}
+          <div class="jumbotron" id="jumbotron5">
+            <div class="container">
+              <p><strong>{{ j.categorie }}</strong></p>
+              <div class="row">
+                <div class="col-lg-9 col-md-4 col-sm-6">
+                  <p>Servicii: {{ j.servicii }}</p>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <p>Pret: {{ j.pret }} {{ j.moneda }}</p>
+                </div>
+                <div class="col-lg-1 col-md-4 col-sm-6">
+                  <a href="{% url 'programare' pk=j.pk %}" class="btn btn-outline-info">Rezerva</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </section>
+        <br>
+        <section id="descriere">
+          <div class="jumbotron" id="jumbotron5">
+            <div class="row">
+              <div class="col-lg-6 col-md-4 col-sm-6">
+                <p>Program</p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">Luni:</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">{{ i.de_la1 }} - {{ i.pana_la1 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">Marti:</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">{{ i.de_la2 }} - {{ i.pana_la2 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">Miercuri:</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">{{ i.de_la3 }} - {{ i.pana_la3 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">Joi:</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">{{ i.de_la4 }} - {{ i.pana_la4 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">Vineri:</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">{{ i.de_la5 }} - {{ i.pana_la5 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">Sambata:</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">{{ i.de_la6 }} - {{ i.pana_la6 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">Duminica:</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 19px;">{{ i.de_la7 }} - {{ i.pana_la7 }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-4 col-sm-6">
+              <p>Descriere</p>
+              <br>
+              <p>{{ i.descriere }}</p>
+              <p>Judet: {{ i.judet }}</p>
+              <p>Localitate: {{ i.localitate }}</p>
+            </div>
+            </div>
+          </div>
+        </section>
+        <section id="recenzii">
+          <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 21px;">Recenzii:</p>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        {% for k in model3 %}
+                        <div class="row">
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <img src="{% static 'images/profile_pic.png' %}" style="height: 6vh;width: 100%;display: inline;border-radius: 100%;">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;font-size: 21px;">{{ user.username }}</p>
+                            </div>
+                        </div>
+                        <br>
+                        <p style="font-family: 'Montserrat', sans-serif;font-weight: bolder;">{{ k.descriere }}</p>
+                        <hr>
+                        <br>
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6">
+                        <form method="POST" class="form-group" action="" style="font-family: 'Montserrat', sans-serif;font-weight: bolder;">
+                            {% csrf_token %}
+                            {{ form.user }}
+                            {{ form.cabinet }}
+                            <label for="mesaj">Mesaj:</label>
+                            {{ form.descriere }}
+                            <br>
+                            {% if user.is_authenticated %}
+                            <input type="submit" class="my_button" value="Adauga mesaj">
+                            {% else %}
+                            <button data-toggle="collapse" data-target="#demo" class="my_button">Adauga mesaj</button>
+                            <div id="demo" class="collapse">
+                                Ai nevoie de un cont pentru a adauga o recenzie
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+        </section>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="jumbotron" id="jumbotron3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <p class="param4">Contacteaza-ne</p>
+                    <br>
+                    <p class="param5"><i class="fab fa-facebook"></i> Facebook</p>
+                    <p class="param5"><i class="fab fa-instagram"></i> Instagram</p>
+                    <p class="param5"><i class="fas fa-envelope"></i> Email: </p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <p class="param4">Informatii</p>
+                    <br>
+                    <a href=""><p class="param5">Ajutor si contact</p></a>
+                    <a href=""><p class="param5">Politica de confidentialitate</p></a>
+                    <a href=""><p class="param5">Termeni si conditii</p></a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <p class="param4">Despre noi</p>
+                    <br>
+                    <p class="param5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima distinctio nisi porro accusantium magni harum veniam, quasi veritatis cumque nesciunt quod delectus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron" id="jumbotron4">
+        <div class="container">
+            <p class="param5">© Copyright {{ date_posted }} - NextStep Medicine - Toate drepturile rezervate</p>
+        </div>
+    </div>
+</div>
+<script>
+  var name = "{{ user.id }}";
+  document.getElementById('user1').value = name;
+  var produs = "{{ model.id }}";
+  document.getElementById('produs1').value = produs;
+</script>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'my_app/contul_meu_doctor.html' %}
+{% load static %}
+
+{% block head_block %}
+<style>
+    #card-box{
+        padding: 20px;
+        background-color: #fff;
+        transition: 0.4s ease-in-out;
+        padding-bottom: 23px;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+    }
+    #card-box:hover{
+        box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 1px 3px rgb(0 0 0 / 24%);
+    }
+    #image3{
+        width: 100%;
+        height: 26vh;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <div class="new_banner">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <img src="{% static 'images/profile_pic.png' %}" style="height: 7vh;width: 28%;display: inline;border-radius: 100%;">
+                <p class="param5">{{ user.username }}</p>
+            </div>
+            <div class="col-lg-9 col-md-4 col-sm-6">
+                <form class="form-group" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="search-box">
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                        <input type="text" class="input-search" placeholder="Cauta acum...">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h2 class="header1">Cabinete inregistrate: {{ user_model.count }}</h2>
+        <hr>
+        <br>
+        <div class="row">
+        {% for i in user_model %}
+        <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="{% url 'pag_cabinete' pk=i.pk %}" style="text-decoration: none;">
+                <div class="jumbotron" id="card-box">
+                    <img src="{{ i.imagine.url }}" id="image3" />
+                    <p class="param2" style="color: #000;text-align: left;padding-top: 14px;">{{ i.numele_cabinetului }}</p>
+                    <p class="param2" style="color: #000;text-align: left;">{{ i.judet }}, {{ i.localitate }}</p>
+                    <div class="row">
+                        <div class="col-lg-10 col-md-4 col-sm-6">
+                            <p style="color: #000;"><i class="fas fa-star" style="color: #FFE15D;"></i> 900 Recenzii</p>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <i class="far fa-heart" style="color: #000;"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

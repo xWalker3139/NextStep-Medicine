@@ -1,0 +1,80 @@
+{% extends 'my_app/contul_meu_doctor.html' %}
+{% load static %}
+
+{% block head_block %}
+<style>
+    .table{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+    }
+    .my_button{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        color: #fff;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #92B4EC;
+        border: 1px solid #92B4EC;
+        border-radius: 12px;
+        transition: 0.4 ease-in-out;
+        text-decoration: none;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .my_button:hover{
+        background-color: #6a96de;
+        color: #fff;
+    }
+    @media (max-width: 900px){
+        .table{
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <div class="new_banner">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <img src="{% static 'images/profile_pic.png' %}" style="height: 7vh;width: 28%;display: inline;border-radius: 100%;">
+                <p class="param5">{{ user.username }}</p>
+            </div>
+            <div class="col-lg-9 col-md-4 col-sm-6">
+                <form class="form-group" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="search-box">
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                        <input type="text" class="input-search" placeholder="Cauta acum...">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h2 class="header1">Pacienti inregistrati: {{ user_model.count }}</h2>
+        <hr>
+        <br>
+        {% for i in user_model %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Numele:</th>
+                    <th>Prenumele:</th>
+                    <th>Email:</th>
+                    <th>Reteta:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ i.numele }}</td>
+                    <td>{{ i.prenumele }}</td>
+                    <td>{{ i.email }}</td>
+                    <td><a href="{% url 'trimite_reteta' %}" class="my_button">Trimite reteta</a></td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
